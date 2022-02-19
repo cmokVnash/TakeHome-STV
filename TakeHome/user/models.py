@@ -12,7 +12,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(_('Active'), default=False)
     date_joined = models.DateTimeField(_('Date Joined'), auto_now_add=True)
-
+    #added is_customer flag
     is_customer = models.BooleanField(default=True)
     objects = managers.UserManager()
 

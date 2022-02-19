@@ -18,6 +18,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
+        #is_customer set to True if customer
         extra_fields.setdefault('is_customer',True)
         return self._create_user(email, password, **extra_fields)
 
