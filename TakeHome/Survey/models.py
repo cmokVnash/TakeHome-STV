@@ -12,17 +12,19 @@ class Survey(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
-    choices = ('text-field',
-                'options-mul','options-bool',)
+    def_answer = models.TextField()
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
 
     def __self__(self):
         return self.question
 
+
+
 class Answer(models.Model):
+
     answer = models.TextField()
     
-    question= models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
         
     def __self__(self):
         return self.answer
