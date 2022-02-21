@@ -5,8 +5,16 @@ class SurveySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Survey
-        fields = ('__all__')
-    
+        fields = ('__all__')#['user']
+
+        # def set_user(self,request):
+        #     self.user = request.user
+        
+        # def create(self, validated_data):
+        #     validated_data['user_id'] = self.user.id
+        #     return super().create(validated_data)
+        
+
 class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:

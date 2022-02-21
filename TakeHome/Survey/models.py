@@ -5,16 +5,15 @@ from user.models import User
 #s
 class Survey(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ManyToManyField(User,null=True,blank=True)
+    user = models.ForeignKey(User,null=True,blank=True, on_delete=models.CASCADE)
     
     def __self__(self):
         return self.name
 
 class Question(models.Model):
     question = models.TextField()
-    def_answer = models.TextField()
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
-
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE,null=True,blank=True)
+    default_answer = models.TextField(null=True,blank=True)
     def __self__(self):
         return self.question
 

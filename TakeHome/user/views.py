@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view
 from django.contrib import auth
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 def home(request):
     return render(request=request, template_name='home.html')
@@ -32,6 +32,8 @@ def l(request):
 
     #return render(request=request, template_name="login.html", context= context)
     return Response(x)
+
+
 
 
 
@@ -69,52 +71,29 @@ def logout(request):
         
         return redirect('http://127.0.0.1:8000')
 
-
-def hello(request):
-    return HttpResponse('Hello World')
-# class index(APIView):
-
-#     def get(self, request):
-#         loginForm = login()
-#         context ={'form' : loginForm.fields()}
-
-#         return render(request, 'test.html', context)
-
-class usersList(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAdminUser]
-
-    def get(self,request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-
+@api_view(['GET','POST'])
+def signup(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
         
+        if form.is_valid():
+            if not user.is_authenticated:
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password')
+                user = auth.authenticate(username=username, password=raw_password)
+                login(request, user)
+                return redirect('http://127.0.0.1:8000')
+            else:
+                 messages.error(request,"Invalid username or password.")
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
-        return Response(serializer.data)
+
 
 def hello(request):
-
     return HttpResponse('Hello World')
 
-# @api_view(['Post'])
-# def authApi(request):
 
-#     if request.method == 'POST':
-#         form = loginForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data.get('name')
-#             password = form.cleaned_data.get('password')
-#             user = authenticate(username=username,password=password)
-
-#             if user is not None:
-#                 login(request, user)
-#                 messages.info(request, f"You are now logged in as {username}.")
-#                 return redirect('http://127.0.0.1:8000')
-            
-#             else:
-#                 messages.error(request,"Invalid username or password.")
-#         else:
-#             messages.error(request,"Invalid username or password.")
-
-#     form = loginForm()
-#     return render(request=request, template_name="login.html", context={"login_form":form})

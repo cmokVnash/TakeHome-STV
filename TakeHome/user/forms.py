@@ -1,3 +1,4 @@
+from enum import unique
 from django import forms
 
 class loginForm(forms.Form):
@@ -10,8 +11,8 @@ class loginForm(forms.Form):
 
 
 class register(forms.Form):
-    email = forms.EmailField(label='Email')
-    name = forms.CharField(label='Name')
+    email = forms.EmailField(required=True)
+    name = forms.CharField(required=True)
     password = forms.CharField(widget=forms.PasswordInput())
 
 
