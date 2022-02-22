@@ -19,6 +19,7 @@ The Project uses default Django admin as admin portal with Basic and Session aut
   <name> 
   <password>
 ## api/logout :
+    
 ## api/signup : 
   <name>
   <password> 
