@@ -1,6 +1,6 @@
 # TakeHome-STV
 
-
+The Project uses default Django admin as admin portal with Basic and Session auths implemented
 
 #Project Setup:
   python manage.py makemigrations
