@@ -15,40 +15,37 @@ The Project uses default Django admin as admin portal with Basic and Session aut
   
 ###legend: postman fields are denoted using '{}' symbols
 
-## api/login: 
+## api/login: (POST)
   <name> 
   <password>
-## api/logout :
+## api/logout : (POST)
     
-## api/signup : 
+## api/signup : (POST)
   <name>
   <password> 
   <email> optional
 
-### api/survey/create
+### api/survey/create (POST)
     <name> (This is the title field that will showup)
       
-### api/survey-list
-    fetches all the surveys
-### api/survey/{pk}
-    fetches particular survey
-    
-### api/survey/create (POST):
-  <name> (this is the heading of the survey field that will show up)
-  
 ### api/survey-list (GET)
     fetches all the surveys
+      
+### api/survey/{pk} (GET)
+    fetches particular survey
     
-### api/survey/{pk}
-    fetches a particular survey
-### api/survey/{pk}/
-    fetches a particular question
-### api/survey/<pk>/question-create
-    <question>
-    <default_answer>
-### api/survey/questions-create/{pk}/answer
-    <answer>
-    
+
+### api/survey/{survey_id}/questions/{question_id} (GET)
+### pi/survey/{pk}/questions
+      retrieves question with pk
+### api/survey/{survey pk}/question-create (POST)
+      creates question of the survey pk
+      
+### api/survey/questions-create/{pk}/answer  (POST)
+      creates answer for the question with pk
+      
+      
+
 
       
      
