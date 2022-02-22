@@ -13,7 +13,7 @@ The Project uses default Django admin as admin portal with Basic and Session aut
 #Run server:
   python manage.py runserver
   
-###legend: postman fields are denoted using '<>' symbols
+###legend: postman fields are denoted using '{}' symbols
 
 ## api/login: 
   <name> 
@@ -30,7 +30,7 @@ The Project uses default Django admin as admin portal with Basic and Session aut
       
 ### api/survey-list
     fetches all the surveys
-### api/survey/<pk>
+### api/survey/{pk}
     fetches particular survey
     
 ### api/survey/create (POST):
@@ -39,14 +39,14 @@ The Project uses default Django admin as admin portal with Basic and Session aut
 ### api/survey-list (GET)
     fetches all the surveys
     
-### api/survey/<pk>
+### api/survey/{pk}
     fetches a particular survey
-### api/survey/<pk>/
+### api/survey/{pk}/
     fetches a particular question
 ### api/survey/<pk>/question-create
     <question>
     <default_answer>
-### api/survey/questions-create/<pk>/answer
+### api/survey/questions-create/{pk}/answer
     <answer>
     
 
