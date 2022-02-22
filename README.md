@@ -1,5 +1,6 @@
 # TakeHome-STV
 
+
 The Project uses default Django admin as admin portal with Basic and Session auths implemented
 
 #Project Setup:
@@ -12,7 +13,9 @@ The Project uses default Django admin as admin portal with Basic and Session aut
 #Run server:
   python manage.py runserver
   
-## api/login fields : 
+###legend: postman fields are denoted using '<>' symbols
+
+## api/login: 
   <name> 
   <password>
 ## api/logout :
@@ -35,11 +38,11 @@ The Project uses default Django admin as admin portal with Basic and Session aut
 ### api/survey-list (GET)
     fetches all the surveys
     
-### api/survey/<int:pk>
+### api/survey/<pk>
     fetches a particular survey
-### api/survey/<int:pk>/
+### api/survey/<pk>/
     fetches a particular question
-### api/survey/<int:pk>/question-create
+### api/survey/<pk>/question-create
     <question>
     <default_answer>
 ### api/survey/questions-create/<pk>/answer
