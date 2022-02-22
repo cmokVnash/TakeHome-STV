@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="center">
+    <form id='button'  action="http://127.0.0.1:8000/survey">
+        <input class="btn btn-default" type="submit" value="Add Survey" />
+    </form>
+
+    <form id='button'  action="http://127.0.0.1:8000/login">
+        <input class="btn btn-default" type="submit" value="Customers" />
+    </form>
+
+    
+
+    </div>
+
+    <div class="items">
+        {% for item in survey %}
+        <ul>
+           <li>{{item.name}}</li>
+        </ul>
+        {% endfor%}
+        </div>
+
+    </div>
+    <style>
+        .center{
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .items {
+            display: flex;
+            color:black;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: bold;
+        }
+
+        #button {
+            margin: 2%;
+            padding: 2%;
+        }
+    </style>
+{% endblock %}
+

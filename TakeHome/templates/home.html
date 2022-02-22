@@ -2,13 +2,29 @@
 
 
 {% block content %}
+    
+    
+    <div class="center">
     <h1> {{ Message }} </h1>
-
-    <form id='button' action="http://127.0.0.1:8000/login">
-        <input type="submit" value="Login" />
+    <form id='button'  action="http://127.0.0.1:8000/login">
+        <input class="btn btn-default" type="submit" value="Login" />
     </form>
 
-    <form id='button' action="http://127.0.0.1:8000/logout">
-        <input type="submit" value="Logout" />
+    <form id='button'  action="http://127.0.0.1:8000/logout">
+        <input class="btn btn-default" type="submit" value="Logout" />
     </form>
-{% endblock content %}
+    </div>
+    
+    <style>
+        .center{
+            display: flex;
+            justify-content: center;
+
+        }
+
+        #button {
+            margin: 2%;
+            padding: 2%;
+        }
+    </style>
+{% endblock  %}

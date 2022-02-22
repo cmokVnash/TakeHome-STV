@@ -1,12 +1,15 @@
 from django.urls import path, include,re_path
-from .views import Home, SurveyView, questionForm, questionPost, questionRetrieveView
+from .views import Home, SurveyView, questionForm, questionPost, questionRetrieveView, surveyForm, adminPortal
 from .viewsApi import QuestionCreate, QuestionList, QuestionRetrieve, SurveyCreate, SurveyList, SurveyRetrieve
 
 urlpatterns = [
     
     path('',Home),
+
+    path('adminPortal', adminPortal),
+
     #survey http urls
-    path('survey/', SurveyView.as_view()),
+    path('survey/', surveyForm),
     path('survey/question', questionForm),
     path('survey/question/<int:pk>', questionRetrieveView),
     path('survey/question/<int:pk>/create', questionPost),

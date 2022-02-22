@@ -17,6 +17,9 @@ from django.core.exceptions import ValidationError
 
 import json
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
 ###SURVEY
 
 @api_view(['GET'])

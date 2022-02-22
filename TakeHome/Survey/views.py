@@ -13,13 +13,40 @@ from rest_framework import generics
 from .serializers import QuestionSerializer, SurveySerializer,AnswerSerializer,SurveySerializer
 from .models import Question,Answer,Survey
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
 
 @api_view(['GET'])
 def Home(request):
     
-    return render(request=request,context={'Message':"Welcome"},template_name='home.html')
+    return render(request=request,template_name='home.html')
+
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, IsAdminUser))
+def surveyForm(request):
+    
+    survey = Survey()
+    serializer = SurveySerializer(survey)
+    
+    return render(request=request, context={'serializer' : serializer}, template_name='surveyForm.html')
+
+#admin portal
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, IsAdminUser))
+def adminPortal(request):
+    survey = Survey.objects.all()
+    survey = list(survey)
+    
+
+    return render(request=request, context={'survey' : survey}, template_name='adminPortal.html')
+
 
 class SurveyView(APIView):
+    
+    permission_classes = [IsAuthenticated]
 
     
     
@@ -60,6 +87,7 @@ class SurveyView(APIView):
 ################
 
 @api_view(['GET'])
+
 def questionForm(request):
     question = Question()
     serializer = QuestionSerializer(question)
