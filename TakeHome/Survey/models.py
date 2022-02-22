@@ -23,7 +23,9 @@ class Answer(models.Model):
 
     answer = models.TextField()
     
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-        
+    ##added null = true blank = true for serializer.save() after validity check
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True,blank=True)
+    #user = models.ForeignKey(User,on_delete=models.CASCADE, null=True,blank=True)
+
     def __str__(self):
         return self.answer

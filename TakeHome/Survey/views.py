@@ -9,6 +9,8 @@ from rest_framework.renderers import TemplateHTMLRenderer,JSONRenderer
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework import generics
+
+from user import serializers
 # Serializers and model imports
 from .serializers import QuestionSerializer, SurveySerializer,AnswerSerializer,SurveySerializer
 from .models import Question,Answer,Survey
@@ -28,8 +30,8 @@ def Home(request):
 @permission_classes((IsAuthenticated, IsAdminUser))
 def surveyForm(request):
     
-    survey = Survey()
-    serializer = SurveySerializer(survey)
+    question = Answer()
+    serializer = AnswerSerializer(question)
     
     return render(request=request, context={'serializer' : serializer}, template_name='surveyForm.html')
 
@@ -118,10 +120,26 @@ def questionPost(request,pk):
     
     return render(request=request, context={'message' : serializer.data}, template_name='question.html')
 
+# SURVEY
+
+@api_view(['get'])
+def surveyList(request):
+
+    survey_list = Survey.objects.all()
+    survey_list = list(survey_list)
+
+    return render(request=request, context={'survey' : survey_list}, template_name='survey.html')
 
 
+@api_view(['get'])
+def surveyRetrieve(request,pk):
     
-        
+    survey = Survey.objects.get(pk=pk)
+
+    serializer = SurveySerializer(survey)
+
+
+    return render(request=request, context={'survey-name' : serializer.data.name}, template_name='survey.html')
    
 
 

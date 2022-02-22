@@ -95,6 +95,7 @@ def QuestionCreate(request,pk):
     survey = Survey.objects.get(pk=pk)
     
     
+    
     # return Response(data)
 
     if not user.is_authenticated:
@@ -104,7 +105,34 @@ def QuestionCreate(request,pk):
     if not serializer.is_valid():
         #  return Response({'message' : 'invalid serializer'})
         raise ValidationError(serializer.errors)
+    
        
     serializer.save(survey=survey)
+
+    return Response(serializer.data) 
+
+
+
+##answer
+
+@api_view(['POST'])
+def AnswerCreate(request,ques_id):
+    answer = Answer()
+    
+    user = request.user
+    
+    question = Question.objects.get(pk=ques_id)
+    
+    
+    # return Response(data)
+
+    
+        
+    serializer = AnswerSerializer(answer, data=request.POST)
+    if not serializer.is_valid():
+        #  return Response({'message' : 'invalid serializer'})
+        raise ValidationError(serializer.errors)
+       
+    serializer.save(question=question)
 
     return Response(serializer.data) 

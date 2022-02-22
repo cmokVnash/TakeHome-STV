@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+
+<div class="container">
+
+<div class="items">
+    {% for item in survey %}
+    <ul>
+      <a href={% url 'home' %}><li>{{item}}</li></a> 
+    </ul>
+    {% endfor%}
+    </div>
+
+</div>
+<style>
+    .center{
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .items {
+        display: flex;
+        color:black;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: bold;
+    }
+
+    #button {
+        margin: 2%;
+        padding: 2%;
+    }
+
+    li {
+        color : black
+    }
+</style>
+    
+{% endblock  %}
